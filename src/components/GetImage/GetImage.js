@@ -1,5 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import './img.css';
+import {
+    Card, CardImg, CardText, CardBody,
+    CardTitle
+  } from 'reactstrap';
+
+
 const axios = require('axios');
 
 function GetImage(props) {
@@ -13,42 +19,34 @@ let convertDate = (date) => {
 }
 
 
+let apiDate= convertDate(props.day()),
 
-
-let apiDate = convertDate(props.day());
-    const
-    container = document.createElement('div'),
-    title = document.createElement('h2'),
-    img = document.createElement('img'),
-    desc = document.createElement('p');
-
-    container.append(title, img, desc);
-
-    container.classList.add('img-container');
-    container.classList.add('container');
-    title.classList.add('img-title');
-    img.classList.add('img');
-    desc.classList.add('img-description');
-
-let getApp = setInterval(() => {
-    if (document.querySelector('.App') !== null && document.querySelector('.img-container') === null | undefined) {
-        document.querySelector('.App').appendChild(container);
-        clearInterval(getApp);
-    }
-}, 500);
+[data, setData] = useState({title: '', url: '', description: ''});
 
 useEffect(() => {
- axios.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date='+apiDate)
+    axios.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date='+apiDate)
     .then((res) => {
         console.log(res.data);
-        document.querySelector('.img-title').innerHTML = res.data.title;
-        document.querySelector('.img').src = res.data.url;
-        document.querySelector('.img-description').innerHTML = res.data.explanation;
+        setData({title: res.data.title, url: res.data.url, description: res.data.explanation});
     }).catch(err => {
         console.log('ERROR: ', err);
     });
-})
-    return(null)
+}, [apiDate])
+
+const PhotoCard = () => {
+    return (
+      <div>
+        <Card className="container img-container">
+        <CardTitle className="img-title">{data.title}</CardTitle>
+          <CardImg className="img" top width="100%" src={data.url} alt="" />
+          <CardBody>
+            <CardText className="img-description">{data.description}</CardText>
+          </CardBody>
+        </Card>
+      </div>
+    );
+  };
+    return(<PhotoCard/>)
 }
 
 export default GetImage;

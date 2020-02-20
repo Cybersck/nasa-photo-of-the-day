@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  min-height: 100vh;
+  background-image: url('./img/bg.jpg');
+  background-repeat: round;
+  background-size: 70%;
 }
 
 .App-logo {
@@ -22,7 +26,18 @@
 .App-link {
   color: #61dafb;
 }
-
+.date-selector {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background: white;
+}
+footer {
+  background-color: rgba(57, 73, 78, 0.712);
+  color: rgb(104, 200, 255);
+  margin-top: 3rem;
+  bottom: 0;
+  width: 100%;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -1,0 +1,16 @@
+.img-container {
+    border: 1px solid black;
+    background-color: rgb(228, 228, 228);
+}
+.img-title {
+    font-weight: 800;
+    font-size: 2rem;
+}
+.img {
+    border-radius: 1%;
+    border: 1px solid black;
+}
+.img-description {
+    margin-top: 1rem;
+    text-align: center;
+}

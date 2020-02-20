@@ -4,17 +4,15 @@ import GetImage from "../GetImage/GetImage";
 
 
 function DateSelector() {
-    const [date, setDate] = useState();
+    const [date, setDate] = useState(new Date());
     let getDay = () => {
         return date;
     }
     console.log(date);
     return (
     <div>
-        <br/>
-        <p>Please Select a Day!</p>
-    <DatePicker onChange={setDate} value={date}/>
-        <br/>
+    <DatePicker className="date-selector" onChange={setDate} value={date}/>
+
     <GetImage day={getDay}/>
     </div>
 )}
